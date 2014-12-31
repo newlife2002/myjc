@@ -133,8 +133,8 @@ void HelloWorld::drawBoard()
     
     m_pDrawNode = CCDrawNode::create();
     m_pDrawNode->setScale(m_scale);
-    m_pDrawNode->setPosition(m_curPos);
     m_pDrawNode->setAnchorPoint(ccp(0, 0));
+    m_pDrawNode->setPosition(m_curPos);
     addChild(m_pDrawNode);
     
     CChessboard::TMapPath foundPoses;
@@ -255,6 +255,8 @@ void HelloWorld::doTouches(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent)
         //mPoint2 = CCDirector::sharedDirector()->convertToGL(mPoint2);
         
         float mdistance = sqrt((mPoint1.x - mPoint2.x) * (mPoint1.x - mPoint2.x) + (mPoint1.y - mPoint2.y) * (mPoint1.y - mPoint2.y));
+        if (mdistance < 0.001)
+            return;
         float scale = mdistance / m_distance;
         m_scale = scale * m_scale;
         
@@ -268,7 +270,7 @@ void HelloWorld::doTouches(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent)
         m_curPos = ccp(x, y);
         m_pDrawNode->setPosition(m_curPos);
         m_deltax = m_deltax*scale;
-        m_deltay = m_deltax*scale;
+        m_deltay = m_deltay*scale;
     }
 }
 
