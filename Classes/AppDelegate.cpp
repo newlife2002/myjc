@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "TLog.h"
 
 USING_NS_CC;
 
@@ -26,6 +27,18 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     CCSize designSize = CCSizeMake(480, 320);
     CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionShowAll);
+    CCSize sz = CCEGLView::sharedOpenGLView()->getFrameSize();
+    CCRect rc = CCEGLView::sharedOpenGLView()->getViewPortRect();
+    CCSize rc1 = CCEGLView::sharedOpenGLView()->getDesignResolutionSize();
+    CCSize rc2 = CCEGLView::sharedOpenGLView()->getVisibleSize();
+    
+    CTLog::Instance().Log(1, "frame size: %f, %f; \nview: %f, %f, %f, %f\n"
+                          "DesignResolutionSize: %f, %f\n"
+                          "VisibleSize: %f, %f",
+                          sz.width, sz.height,
+                          rc.origin.x, rc.origin.y, rc.size.width, rc.size.height,
+                          rc1.width, rc1.height,
+                          rc2.width, rc2.height);
 
     // create a scene. it's an autorelease object
     CCScene *pScene = HelloWorld::scene();

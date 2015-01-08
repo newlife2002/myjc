@@ -16,7 +16,7 @@ using namespace std;
 bool CTLogLayer::init()
 {
     setTouchEnabled(true);
-    m_pLogNode = CCLabelTTF::create("", "Arial", 12);
+    m_pLogNode = CCLabelTTF::create("", "Arial", 12, CCSizeZero, kCCTextAlignmentLeft);
     m_pLogNode->setAnchorPoint(CCPoint(0, 0));
     m_pLogNode->retain();
     m_bShow = false;
